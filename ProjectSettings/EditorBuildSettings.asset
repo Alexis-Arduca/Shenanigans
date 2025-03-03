@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GyroBall.unity
+    guid: 44e55608f2aa9494d84807a7fe9f42db
   m_configObjects: {}
