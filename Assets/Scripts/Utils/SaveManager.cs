@@ -8,10 +8,14 @@ public class SaveManager : MonoBehaviour
     public RenderTexture renderTexture;
     public RawImage myRawImage;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        GameEventsManager.instance.drawingEvents.onDrawingComplete += SaveDrawing;
+    }
+
+    void OnDisable()
+    {
+        GameEventsManager.instance.drawingEvents.onDrawingComplete -= SaveDrawing;
     }
 
     public void SaveDrawing()
@@ -23,10 +27,6 @@ public class SaveManager : MonoBehaviour
         texture.Apply();
 
         RenderTexture.active = null;
-
-        byte[] bytes = texture.EncodeToPNG();
-        System.IO.File.WriteAllBytes(Application.persistentDataPath + "/Drawing.png", bytes);
-        Debug.Log("Dessin sauvegardé à : " + Application.persistentDataPath + "/Drawing.png");
 
         myRawImage.texture = texture;
     }

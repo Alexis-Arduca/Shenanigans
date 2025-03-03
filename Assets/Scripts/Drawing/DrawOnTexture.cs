@@ -6,6 +6,7 @@ public class DrawOnTexture : MonoBehaviour
     public int textureWidth;
     public int textureHeight;
 
+    private bool canDraw = false;
     private Texture2D texture;
     private Renderer rend;
 
@@ -16,11 +17,20 @@ public class DrawOnTexture : MonoBehaviour
         texture = new Texture2D(textureWidth, textureHeight, TextureFormat.RGBA32, false);
         ClearTexture();
         rend.material.mainTexture = texture;
+
+        GameEventsManager.instance.drawingEvents.onDrawingStart += UpdateDrawingState;
+        GameEventsManager.instance.drawingEvents.onDrawingComplete += UpdateDrawingState;
+    }
+
+    void OnDisable()
+    {
+        GameEventsManager.instance.drawingEvents.onDrawingStart -= UpdateDrawingState;
+        GameEventsManager.instance.drawingEvents.onDrawingComplete -= UpdateDrawingState;
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && canDraw)
         {
             DrawAtMousePosition();
         }
@@ -70,5 +80,10 @@ public class DrawOnTexture : MonoBehaviour
         }
         texture.SetPixels(clearPixels);
         texture.Apply();
+    }
+
+    public void UpdateDrawingState()
+    {
+        canDraw = !canDraw;
     }
 }
