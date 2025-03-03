@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SaveDraw : MonoBehaviour
+public class SaveManager : MonoBehaviour
 {
     public RenderTexture renderTexture;
     public RawImage myRawImage;
