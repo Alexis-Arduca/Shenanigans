@@ -8,6 +8,10 @@ public class GameProcess : MonoBehaviour
     public float drawingTime = 120f;
     public TMPro.TMP_Text themeDisplay;
 
+    [Header("Easter Egg")]
+    private int resetButtonCount = 0;
+    public GameObject secret;
+
     void Start()
     {
         
@@ -33,5 +37,14 @@ public class GameProcess : MonoBehaviour
     public void DrawingDone()
     {
         GameEventsManager.instance.drawingEvents.OnDrawingComplete();
-    }    
+    }
+
+    public void EasterEgg()
+    {
+        resetButtonCount += 1;
+
+        if (resetButtonCount > 30) {
+            secret.SetActive(true); 
+        } 
+    }
 }
