@@ -22,6 +22,9 @@ public class PenManager : MonoBehaviour
             case 4:
                 penColor = Color.green;
                 break;
+            case 5:
+                penColor = Color.black;
+                break;
         }
     }
 

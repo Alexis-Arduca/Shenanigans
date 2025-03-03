@@ -7,16 +7,17 @@ public class DrawOnTexture : MonoBehaviour
     public int textureHeight;
 
     private bool canDraw = false;
-    private Texture2D texture;
-    private Renderer rend;
+    private Texture2D myTexture;
+    private Renderer myRend;
 
     void Start()
     {
-        rend = GetComponent<Renderer>();
+        myRend = GetComponent<Renderer>();
 
-        texture = new Texture2D(textureWidth, textureHeight, TextureFormat.RGBA32, false);
+        myTexture = new Texture2D(textureWidth, textureHeight, TextureFormat.RGBA32, false);
+        myRend.material.mainTexture = myTexture;
+
         ClearTexture();
-        rend.material.mainTexture = texture;
 
         GameEventsManager.instance.drawingEvents.onDrawingStart += UpdateDrawingState;
         GameEventsManager.instance.drawingEvents.onDrawingComplete += UpdateDrawingState;
@@ -30,25 +31,34 @@ public class DrawOnTexture : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && canDraw)
-        {
-            DrawAtMousePosition();
+        if (canDraw) {
+            // ---> Delete Later (PC TEST)
+            if (Input.GetMouseButton(0)) {
+                DrawAtPosition(Input.mousePosition);
+            }
+            // ---> Delete Later (PC TEST)
+
+            if (Input.touchCount > 0) {
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Began) {
+                    DrawAtPosition(touch.position);
+                }
+            }
         }
     }
 
-    private void DrawAtMousePosition()
+    private void DrawAtPosition(Vector3 position)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(position);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit) && hit.transform == transform)
-        {
+        if (Physics.Raycast(ray, out hit) && hit.transform == transform) {
             Vector2 pixelUV = hit.textureCoord;
             pixelUV.x *= textureWidth;
             pixelUV.y *= textureHeight;
 
             DrawCircle((int)pixelUV.x, (int)pixelUV.y);
-            texture.Apply();
+            myTexture.Apply();
         }
     }
 
@@ -56,15 +66,12 @@ public class DrawOnTexture : MonoBehaviour
     {
         int penSize = myPen.GetPenSize();
 
-        for (int i = -penSize; i < penSize; i++)
-        {
-            for (int j = -penSize; j < penSize; j++)
-            {
-                if (i * i + j * j <= penSize * penSize)
-                {
+        for (int i = -penSize; i < penSize; i++) {
+            for (int j = -penSize; j < penSize; j++) {
+                if (i * i + j * j <= penSize * penSize) {
                     int px = Mathf.Clamp(x + i, 0, textureWidth - 1);
                     int py = Mathf.Clamp(y + j, 0, textureHeight - 1);
-                    texture.SetPixel(px, py, myPen.GetPenColor());
+                    myTexture.SetPixel(px, py, myPen.GetPenColor());
                 }
             }
         }
@@ -74,12 +81,11 @@ public class DrawOnTexture : MonoBehaviour
     {
         Color[] clearPixels = new Color[textureWidth * textureHeight];
 
-        for (int i = 0; i < clearPixels.Length; i++)
-        {
+        for (int i = 0; i < clearPixels.Length; i++) {
             clearPixels[i] = Color.white;
         }
-        texture.SetPixels(clearPixels);
-        texture.Apply();
+        myTexture.SetPixels(clearPixels);
+        myTexture.Apply();
     }
 
     public void UpdateDrawingState()
