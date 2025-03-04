@@ -3,15 +3,21 @@ using UnityEngine;
 public class DrawOnTexture : MonoBehaviour
 {
     public PenManager myPen;
-    public int textureWidth;
-    public int textureHeight;
+    private int textureWidth;
+    private int textureHeight;
+    public RenderTexture myRenderTexture;
 
     private bool canDraw = false;
     private Texture2D myTexture;
     private Renderer myRend;
 
+
+
     void Start()
     {
+        textureWidth = (int)Screen.width;
+        textureHeight = (int)Screen.height;
+
         myRend = GetComponent<Renderer>();
 
         myTexture = new Texture2D(textureWidth, textureHeight, TextureFormat.RGBA32, false);
@@ -31,20 +37,44 @@ public class DrawOnTexture : MonoBehaviour
 
     void Update()
     {
-        if (canDraw) {
-            // ---> Delete Later (PC TEST)
-            if (Input.GetMouseButton(0)) {
+        if (textureWidth != Screen.width || textureHeight != Screen.height)
+        {
+            UpdateTextureSize();
+        }
+
+        if (canDraw)
+        {
+            if (Input.GetMouseButton(0))
+            {
                 DrawAtPosition(Input.mousePosition);
             }
-            // ---> Delete Later (PC TEST)
 
-            if (Input.touchCount > 0) {
+            if (Input.touchCount > 0)
+            {
                 Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Began) {
+                if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Began)
+                {
                     DrawAtPosition(touch.position);
                 }
             }
         }
+    }
+
+    void UpdateTextureSize()
+    {
+        textureWidth = Screen.width;
+        textureHeight = Screen.height;
+
+        myRenderTexture.Release();
+
+        myRenderTexture.width = Screen.width;
+        myRenderTexture.height = Screen.height;
+
+        myRenderTexture.Create();
+
+        myTexture = new Texture2D(textureWidth, textureHeight, TextureFormat.RGBA32, false);
+        myRend.material.mainTexture = myTexture;
+        ClearTexture();
     }
 
     private void DrawAtPosition(Vector3 position)

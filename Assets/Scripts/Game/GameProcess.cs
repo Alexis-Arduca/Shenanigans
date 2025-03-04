@@ -44,7 +44,10 @@ public class GameProcess : MonoBehaviour
         resetButtonCount += 1;
 
         if (resetButtonCount > 30) {
-            secret.SetActive(true); 
-        } 
+            secret.SetActive(true);
+            resetButtonCount = 0;
+        } else {
+            secret.SetActive(false);
+        }
     }
 }

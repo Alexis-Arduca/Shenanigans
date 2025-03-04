@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
+    public AssembleDraw assembleDraw;
     public RenderTexture renderTexture;
-    public RawImage myRawImage;
+    public GameObject myRawImage;
 
     void Start()
     {
@@ -28,6 +29,8 @@ public class SaveManager : MonoBehaviour
 
         RenderTexture.active = null;
 
-        myRawImage.texture = texture;
+        myRawImage.GetComponent<RawImage>().texture = texture;
+
+        assembleDraw.UploadDrawing(myRawImage);
     }
 }
