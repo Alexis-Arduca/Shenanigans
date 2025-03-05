@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.TerrainTools;
 
 public class SphereTrail : MonoBehaviour
 {
@@ -9,9 +8,17 @@ public class SphereTrail : MonoBehaviour
     public GameObject brushPrefab;
     public Transform plane;
     
+    private Transform _transform;
+    
     private void Start()
     {
+        if (!material || !texture)
+        {
+            Debug.LogError("Material or texture not set!");
+            return;
+        }
         material.mainTexture = texture;
+        _transform = transform;
     }
 
     private void Update()
@@ -24,12 +31,9 @@ public class SphereTrail : MonoBehaviour
         if (!brushPrefab || !plane) return;
 
         // Instantiate a brush
-        GameObject brush = Instantiate(brushPrefab, transform.position, Quaternion.identity);
+        GameObject brush = Instantiate(brushPrefab, _transform.position, Quaternion.identity);
         
         // Make sure it's aligned with the painting plane
-        brush.transform.position = new Vector3(transform.position.x, plane.position.y + 0.01f, transform.position.z);
-        
-        // // Optionally, destroy after a delay to reduce clutter
-        // Destroy(brush, 2f);
+        brush.transform.position = new Vector3(_transform.position.x, plane.position.y + 0.01f, _transform.position.z);
     }
 }
