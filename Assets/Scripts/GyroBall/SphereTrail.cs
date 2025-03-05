@@ -34,6 +34,8 @@ public class SphereTrail : MonoBehaviour
         // Set width
         _lineRenderer.startWidth = 1;
         _lineRenderer.endWidth = 0.5f;
+        
+        _lineRenderer.positionCount = 0;
     }
 
     private void Update()
