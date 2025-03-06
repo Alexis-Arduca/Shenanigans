@@ -1573,8 +1573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b411c7d2c9514c9d4ce18bf0d6309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: 5716fe4e357e5714fb7c6521bd883711, type: 3}
-  sceneName: LobbyScene
+  sceneAsset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
+  sceneName: SampleScene
 --- !u!114 &1460810929
 MonoBehaviour:
   m_ObjectHideFlags: 0
