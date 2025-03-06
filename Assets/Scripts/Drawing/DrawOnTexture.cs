@@ -43,6 +43,7 @@ public class DrawOnTexture : MonoBehaviour
 
         if (canDraw)
         {
+            // ---> Delete Later (PC TEST)
             if (Input.GetMouseButton(0))
             {
                 DrawAtPosition(Input.mousePosition);
@@ -51,6 +52,7 @@ public class DrawOnTexture : MonoBehaviour
             {
                 lastDrawPosition = null;
             }
+            // ---> Delete Later (PC TEST)
 
             if (Input.touchCount > 0)
             {
@@ -108,7 +110,6 @@ public class DrawOnTexture : MonoBehaviour
         }
     }
 
-
     private void DrawAtPosition(Vector3 position)
     {
         Ray ray = Camera.main.ScreenPointToRay(position);
@@ -132,7 +133,6 @@ public class DrawOnTexture : MonoBehaviour
             myTexture.Apply();
         }
     }
-
 
     private void DrawCircle(int x, int y)
     {
