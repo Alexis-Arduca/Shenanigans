@@ -1,9 +1,8 @@
-using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class GyroBall : MonoBehaviour
 {
-    public TextMeshProUGUI text;
     private Rigidbody _rb;
     private Quaternion _initialRotation;
 
@@ -14,21 +13,11 @@ public class GyroBall : MonoBehaviour
         _initialRotation = Input.gyro.attitude;
     }
     
-    void Update()
+    void FixedUpdate()
     {
         Quaternion currentRotation = Input.gyro.attitude;
-        text.text = $"Gyro: {currentRotation.eulerAngles}";
-        
-        // Calculate the offset from the initial rotation
         Quaternion offset = Quaternion.Inverse(_initialRotation) * currentRotation;
-        
-        // Convert the offset quaternion to Euler angles
-        Vector3 offsetEulerAngles = offset.eulerAngles;
-        
-        // Apply torque based on the offset angles
-        Vector3 torque = new Vector3(-offsetEulerAngles.x, 0, -offsetEulerAngles.z);
-
-        // Scale the torque to make the ball move more noticeably
-        _rb.AddTorque(torque * 10, ForceMode.Impulse);
+        Vector3 torque = new Vector3(-offset.x, 0, -offset.y);
+        _rb.AddTorque(torque, ForceMode.Impulse);
     }
 }
