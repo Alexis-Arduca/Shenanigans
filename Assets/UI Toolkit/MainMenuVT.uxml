@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=6707c192b55c879418366f0e41c4c0d1&amp;type=3#MainMenuStyle" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; justify-content: flex-end;">
+        <GallantGames.UI.AspectRatioPanel balance-y="100" aspect-ratio-x="16" style="justify-content: flex-end;">
+            <ui:VisualElement style="flex-grow: 1; align-items: center; max-height: 25%; justify-content: center; align-self: auto; bottom: 16%; height: auto; min-height: auto; flex-direction: row;">
+                <Shadow shadow-corner-radius="50" shadow-scale="0.92" shadow-offset-x="0" shadow-offset-y="0" class="Button" style="background-color: rgba(0, 0, 0, 0); -unity-background-image-tint-color: rgb(255, 255, 255); color: rgba(27, 27, 27, 0.47);">
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" class="ButtonImage" style="background-color: rgb(255, 246, 220); height: 100%; background-image: url(&quot;project://database/Assets/_Imported%20Assets/Logo_Launcher_ExqCorpse.png?fileID=2800000&amp;guid=1a9c3edfad9de0b478e0af24c24c7eef&amp;type=3#Logo_Launcher_ExqCorpse&quot;);" />
+                </Shadow>
+            </ui:VisualElement>
+        </GallantGames.UI.AspectRatioPanel>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,41 @@
+.Button {
+    width: 25%;
+    height: auto;
+    margin-top: 0;
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-left: 15px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    max-width: 580px;
+    max-height: 256%;
+    min-width: 0;
+    min-height: 100%;
+    justify-content: center;
+    border-left-color: rgb(199, 93, 93);
+    border-right-color: rgb(199, 93, 93);
+    border-top-color: rgb(199, 93, 93);
+    border-bottom-color: rgb(199, 93, 93);
+}
+
+.ButtonImage {
+    border-top-left-radius: 34px;
+    border-top-right-radius: 34px;
+    border-bottom-right-radius: 34px;
+    border-bottom-left-radius: 34px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.ButtonImage:hover {
+    border-color: rgb(199, 93, 93);
+    border-width: 10px;
+}
