@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class SaveManager : MonoBehaviour
+public class SaveManager : NetworkBehaviour
 {
     public AssembleDraw assembleDraw;
     public RenderTexture renderTexture;
@@ -32,5 +33,17 @@ public class SaveManager : MonoBehaviour
         myRawImage.GetComponent<RawImage>().texture = texture;
 
         assembleDraw.UploadDrawing(myRawImage);
+
+        Vector3 spawnPosition = new Vector3(Random.Range(-5, 5), 1, Random.Range(-5, 5));
+        CmdSpawnObjectOnServer(spawnPosition);
     }
+
+    // ---> NEED MORE TEST (Send the drawing at the host)
+    [Command]
+    void CmdSpawnObjectOnServer(Vector3 position)
+    {
+        GameObject newObject = Instantiate(myRawImage, position, Quaternion.identity);
+        NetworkServer.Spawn(newObject);
+    }
+    // ---> NEED MORE TEST (Send the drawing at the host)
 }

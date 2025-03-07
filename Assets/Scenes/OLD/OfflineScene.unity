@@ -678,6 +678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 476905014}
   - component: {fileID: 476905015}
+  - component: {fileID: 476905016}
   m_Layer: 0
   m_Name: StartMenuManager
   m_TagString: Untagged
@@ -715,10 +716,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   networkManager: {fileID: 1731515873}
-  pcMenu: {fileID: 1135090906}
-  mobileMenu: {fileID: 1667513043}
   ipAddressInput: {fileID: 1788432052}
   statusText: {fileID: 724512408}
+--- !u!114 &476905016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476905013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b070c736fd14124f99e6100da9a5c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pcMenu: {fileID: 1135090906}
+  mobileMenu: {fileID: 1667513043}
 --- !u!1 &724512407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,7 +1335,7 @@ PrefabInstance:
       objectReference: {fileID: 5477324286407300923, guid: 092bb1dcdd1cb984f93e765353f66c19, type: 3}
     - target: {fileID: 4118694238958533863, guid: 29f737cd7ec3b224ca60f6d02905c6f8, type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4118694238958533863, guid: 29f737cd7ec3b224ca60f6d02905c6f8, type: 3}
       propertyPath: spawnPrefabs.Array.data[0]
@@ -1331,6 +1344,18 @@ PrefabInstance:
     - target: {fileID: 5903115767444361609, guid: 29f737cd7ec3b224ca60f6d02905c6f8, type: 3}
       propertyPath: m_Name
       value: NetworkManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507525309808507366, guid: 29f737cd7ec3b224ca60f6d02905c6f8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507525309808507366, guid: 29f737cd7ec3b224ca60f6d02905c6f8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507525309808507366, guid: 29f737cd7ec3b224ca60f6d02905c6f8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8507525309808507366, guid: 29f737cd7ec3b224ca60f6d02905c6f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1350,15 +1375,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8507525309808507366, guid: 29f737cd7ec3b224ca60f6d02905c6f8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8507525309808507366, guid: 29f737cd7ec3b224ca60f6d02905c6f8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8507525309808507366, guid: 29f737cd7ec3b224ca60f6d02905c6f8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8507525309808507366, guid: 29f737cd7ec3b224ca60f6d02905c6f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1548,8 +1573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4b411c7d2c9514c9d4ce18bf0d6309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneAsset: {fileID: 102900000, guid: 5716fe4e357e5714fb7c6521bd883711, type: 3}
-  sceneName: LobbyScene
+  sceneAsset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
+  sceneName: SampleScene
 --- !u!114 &1460810929
 MonoBehaviour:
   m_ObjectHideFlags: 0

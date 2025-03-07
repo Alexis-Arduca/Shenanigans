@@ -7,32 +7,10 @@ public class StartMenuManager : MonoBehaviour
     // Reference to the custom NetworkManager
     public NetworkManager networkManager;
 
-    // UI elements for the PC and mobile menus
-    [SerializeField] private GameObject pcMenu;
-    [SerializeField] private GameObject mobileMenu;
-
     // (Optional) UI elements for IP address and status
     public TMP_InputField ipAddressInput;
     public TextMeshProUGUI statusText;
-
-    private void Start()
-    {
-        // Automatically switch UI based on the platform
-        if (Application.platform == RuntimePlatform.Android ||
-            Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            // Running on a mobile device: show mobile UI
-            if (mobileMenu != null) mobileMenu.SetActive(true);
-            if (pcMenu != null) pcMenu.SetActive(false);
-        }
-        else
-        {
-            // Running on PC/Standalone: show PC UI
-            if (mobileMenu != null) mobileMenu.SetActive(false);
-            if (pcMenu != null) pcMenu.SetActive(true);
-        }
-    }
-
+    
     public void StartHost()
     {
         Debug.Log("Starting as Host (PC)");
