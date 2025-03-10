@@ -30,20 +30,13 @@ public class SaveManager : NetworkBehaviour
 
         RenderTexture.active = null;
 
-        myRawImage.GetComponent<RawImage>().texture = texture;
+        byte[] bArray2 = texture.EncodeToPNG();
 
-        assembleDraw.UploadDrawing(myRawImage);
+        Texture2D imgTest = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
+        imgTest.LoadImage(bArray2);
+        imgTest.Apply();
 
-        Vector3 spawnPosition = new Vector3(Random.Range(-5, 5), 1, Random.Range(-5, 5));
-        CmdSpawnObjectOnServer(spawnPosition);
+        myRawImage.GetComponent<RawImage>().texture = imgTest;
+
     }
-
-    // ---> NEED MORE TEST (Send the drawing at the host)
-    [Command]
-    void CmdSpawnObjectOnServer(Vector3 position)
-    {
-        GameObject newObject = Instantiate(myRawImage, position, Quaternion.identity);
-        NetworkServer.Spawn(newObject);
-    }
-    // ---> NEED MORE TEST (Send the drawing at the host)
 }
