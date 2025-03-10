@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GyroBall.unity
-    guid: 44e55608f2aa9494d84807a7fe9f42db
+    path: Assets/Scenes/OfflineScene.unity
+    guid: 25d8275ebac8e7249a6fea309ee5e716
+  - enabled: 1
+    path: Assets/Scenes/Eqxuisite_Corpse_MenuScene.unity
+    guid: d3c6312cbd495e6448b74207f04cf41f
+  - enabled: 1
+    path: Assets/Scenes/Eqxuisite_Corpse_LobbyScene.unity
+    guid: 2e772f195aae9a54191dd6087e99a290
   m_configObjects: {}

@@ -2,23 +2,11 @@ using UnityEngine;
 
 public class PenManager : MonoBehaviour
 {
-    public GameObject brushPrefab;
     public Color penColor = Color.black;
-    public float penSize = 0.5f;
-    public Texture2D penTexture;
-    
-    void Start()
-    {
-        ApplySettingsToBrush();
-    }
+    public int penSize = 5;
 
-    public GameObject GetBrush()
-    {
-        ApplyToBrushInstance(brushPrefab);
-    
-        return brushPrefab;
-    }
-
+    /// ===[ SETTER ]=== \\\
+    ///==================\\\
     public void SetColor(int color)
     {
         switch(color) {
@@ -34,58 +22,26 @@ public class PenManager : MonoBehaviour
             case 4:
                 penColor = Color.green;
                 break;
-        }
-        ApplySettingsToBrush();
-    }
-
-    public void SetSize(float newSize)
-    {
-        penSize = Mathf.Clamp(newSize, 0.01f, 1f);
-        ApplySettingsToBrush();
-    }
-
-    public void SetTexture(Texture2D newTexture)
-    {
-        penTexture = newTexture;
-        ApplySettingsToBrush();
-    }
-
-    private void ApplySettingsToBrush()
-    {
-        if (brushPrefab != null)
-        {
-            LineRenderer lineRenderer = brushPrefab.GetComponent<LineRenderer>();
-            if (lineRenderer != null)
-            {
-                lineRenderer.startColor = penColor;
-                lineRenderer.endColor = penColor;
-                lineRenderer.startWidth = penSize;
-                lineRenderer.endWidth = penSize;
-
-                if (penTexture != null)
-                {
-                    lineRenderer.sharedMaterial = new Material(Shader.Find("Sprites/Default"));
-                    lineRenderer.sharedMaterial.mainTexture = penTexture;
-                }
-            }
+            case 5:
+                penColor = Color.black;
+                break;
         }
     }
 
-    public void ApplyToBrushInstance(GameObject brushInstance)
+    public void SetSize(int newSize)
     {
-        LineRenderer lineRenderer = brushInstance.GetComponent<LineRenderer>();
-        if (lineRenderer != null)
-        {
-            lineRenderer.startColor = penColor;
-            lineRenderer.endColor = penColor;
-            lineRenderer.startWidth = penSize;
-            lineRenderer.endWidth = penSize;
+        penSize = newSize;
+    }
 
-            if (penTexture != null)
-            {
-                lineRenderer.sharedMaterial = new Material(Shader.Find("Sprites/Default"));
-                lineRenderer.sharedMaterial.mainTexture = penTexture;
-            }
-        }
+    /// ===[ GETTER ]=== \\\
+    ///==================\\\
+    public Color GetPenColor()
+    {
+        return penColor;
+    }
+
+    public int GetPenSize()
+    {
+        return penSize;
     }
 }
