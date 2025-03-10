@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 1864168549}
   - component: {fileID: 1864168548}
   - component: {fileID: 1864168547}
-  - component: {fileID: 1864168546}
+  - component: {fileID: 1864168553}
   - component: {fileID: 1864168552}
   - component: {fileID: 1864168551}
   m_Layer: 0
@@ -742,18 +742,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1864168546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864168545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 472dd24dd508f6f4da87fa5fd373e5e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &1864168547
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -862,11 +850,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1864168552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,6 +871,18 @@ MonoBehaviour:
   texture: {fileID: 8400000, guid: fec645a0149e6ff439fc141932855c92, type: 2}
   plane: {fileID: 571321304}
   lineMaterial: {fileID: 2100000, guid: 82e849b77d3854e4b86b4b438517fb1c, type: 2}
+--- !u!114 &1864168553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864168545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 472dd24dd508f6f4da87fa5fd373e5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1988861397
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,8 +16,15 @@ public class GyroBall : MonoBehaviour
     void FixedUpdate()
     {
         Quaternion currentRotation = Input.gyro.attitude;
+        
+        // Does not work
         Quaternion offset = Quaternion.Inverse(_initialRotation) * currentRotation;
         Vector3 torque = new Vector3(-offset.x, 0, -offset.y);
         _rb.AddTorque(torque, ForceMode.Impulse);
+        
+        // Does not work
+        // Vector3 torque = new Vector3(-currentRotation.x, 0, -currentRotation.y);
+        // _rb.AddTorque(torque, ForceMode.Impulse);
+        
     }
 }
