@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Eqxuisite_Corpse_LobbyScene.unity
     guid: 2e772f195aae9a54191dd6087e99a290
-  - enabled: 1
-    path: Assets/Scenes/Eqxuisite_Corpse_Game.unity
-    guid: 597cb76ddf74b2c4fa0cc4a2ace72cda
   m_configObjects: {}
