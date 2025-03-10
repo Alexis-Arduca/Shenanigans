@@ -24,6 +24,10 @@ public class CustomNetworkManager : NetworkManager
         // If we're not running as a server (host), request to add a player.
         if (!NetworkServer.active)
         {
+            if (!NetworkClient.ready)
+            {
+                NetworkClient.Ready();
+            }
             NetworkClient.AddPlayer();
         }
     }

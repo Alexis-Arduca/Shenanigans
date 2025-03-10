@@ -75,8 +75,8 @@ MonoBehaviour:
   headlessStartMode: 0
   editorAutoStart: 0
   sendRate: 60
-  offlineScene: 
-  onlineScene: 
+  offlineScene: Assets/Scenes/OfflineScene.unity
+  onlineScene: Assets/Scenes/Eqxuisite_Corpse_LobbyScene.unity
   offlineSceneLoadDelay: 0
   transport: {fileID: 5407192476348282429}
   networkAddress: localhost

@@ -9,7 +9,7 @@ public class NetworkUI : MonoBehaviour
     public Button hostButton;
     public Button joinButton;
     public TMP_InputField ipAddressInput; // Use TMP_InputField for TMP
-    public TMP_Text statusText; // Use TMP_Text instead of Text
+    //public TMP_Text statusText; // Use TMP_Text instead of Text
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class NetworkUI : MonoBehaviour
     void StartHost()
     {
         manager.StartHost();
-        statusText.text = "Hosting game...";
+        //statusText.text = "Hosting game...";
     }
 
     void JoinGame()
@@ -30,11 +30,11 @@ public class NetworkUI : MonoBehaviour
         {
             manager.networkAddress = ipAddress;
             manager.StartClient();
-            statusText.text = "Connecting to " + ipAddress + "...";
+            //statusText.text = "Connecting to " + ipAddress + "...";
         }
         else
         {
-            statusText.text = "Please enter a valid IP address!";
+            //statusText.text = "Please enter a valid IP address!";
         }
     }
 }
