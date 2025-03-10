@@ -45,5 +45,5 @@ public class SaveManager : NetworkBehaviour
         GameObject newObject = Instantiate(myRawImage, position, Quaternion.identity);
         NetworkServer.Spawn(newObject);
     }
-    // ---> NEED MORE TEST (Send the drawing at the host)
+    // ---> NEED MORE TEST (Send the drawing at the host)   
 }

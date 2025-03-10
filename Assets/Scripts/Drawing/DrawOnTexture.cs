@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class DrawOnTexture : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class DrawOnTexture : MonoBehaviour
     public RenderTexture myRenderTexture;
 
     private bool canDraw = false;
+    private bool isBucketSelect = false;
     private Texture2D myTexture;
     private Renderer myRend;
     private Vector2? lastDrawPosition = null;
@@ -86,6 +88,63 @@ public class DrawOnTexture : MonoBehaviour
         ClearTexture();
     }
 
+    private void DrawAtPosition(Vector3 position)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(position);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit) && hit.transform == transform) {
+            Texture2D tex = (Texture2D)hit.collider.GetComponent<Renderer>().material.mainTexture;
+            Vector2 pixelUV = hit.textureCoord;
+
+            pixelUV.x *= textureWidth;
+            pixelUV.y *= textureHeight;
+
+            if (isBucketSelect) {
+                Color targetColor = tex.GetPixel((int)pixelUV.x, (int)pixelUV.y);
+                Color fillColor = myPen.GetPenColor();
+                BucketFill(new Vector2Int((int)pixelUV.x, (int)pixelUV.y), targetColor, fillColor);
+            } else if (lastDrawPosition.HasValue) {
+                DrawLine(lastDrawPosition.Value, pixelUV);
+            } else {
+                DrawCircle((int)pixelUV.x, (int)pixelUV.y);
+            }
+
+            lastDrawPosition = pixelUV;
+            myTexture.Apply();
+        }
+    }
+
+    private void BucketFill(Vector2Int pixel, Color targetColor, Color fillColor)
+    {
+        if (targetColor == fillColor) return;
+
+        Stack<Vector2Int> pixels = new Stack<Vector2Int>();
+        pixels.Push(pixel);
+
+        while (pixels.Count > 0)
+        {
+            Vector2Int p = pixels.Pop();
+
+            if (p.x < 0 || p.x >= textureWidth || p.y < 0 || p.y >= textureHeight)
+                continue;
+
+            Color currentColor = myTexture.GetPixel(p.x, p.y);
+
+            if (currentColor == targetColor)
+            {
+                myTexture.SetPixel(p.x, p.y, fillColor);
+
+                pixels.Push(new Vector2Int(p.x + 1, p.y));
+                pixels.Push(new Vector2Int(p.x - 1, p.y));
+                pixels.Push(new Vector2Int(p.x, p.y + 1));
+                pixels.Push(new Vector2Int(p.x, p.y - 1));
+            }
+        }
+
+        myTexture.Apply();
+    }
+
     private void DrawLine(Vector2 start, Vector2 end)
     {
         int x0 = (int)start.x;
@@ -110,30 +169,6 @@ public class DrawOnTexture : MonoBehaviour
         }
     }
 
-    private void DrawAtPosition(Vector3 position)
-    {
-        Ray ray = Camera.main.ScreenPointToRay(position);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit) && hit.transform == transform) {
-            Vector2 pixelUV = hit.textureCoord;
-            pixelUV.x *= textureWidth;
-            pixelUV.y *= textureHeight;
-
-            if (lastDrawPosition.HasValue)
-            {
-                DrawLine(lastDrawPosition.Value, pixelUV);
-            }
-            else
-            {
-                DrawCircle((int)pixelUV.x, (int)pixelUV.y);
-            }
-
-            lastDrawPosition = pixelUV;
-            myTexture.Apply();
-        }
-    }
-
     private void DrawCircle(int x, int y)
     {
         int penSize = myPen.GetPenSize();
@@ -147,6 +182,11 @@ public class DrawOnTexture : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void BucketOption()
+    {
+        isBucketSelect = !isBucketSelect;
     }
 
     public void ClearTexture()
