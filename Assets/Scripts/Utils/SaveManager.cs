@@ -10,6 +10,7 @@ public class SaveManager : NetworkBehaviour
     public RenderTexture renderTexture;
     public GameObject myRawImage;
     public List<GameObject> finalsDrawing = new List<GameObject>();
+    public GameObject myPlane;
 
     void Start()
     {
@@ -23,18 +24,21 @@ public class SaveManager : NetworkBehaviour
 
     public void SaveDrawing()
     {
-        RenderTexture.active = renderTexture;
+        // RenderTexture.active = renderTexture;
 
-        Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
-        texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
-        texture.Apply();
+        // Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
+        // texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+        // texture.Apply();
 
-        RenderTexture.active = null;
+        // RenderTexture.active = null;
+
+        Texture2D texture = (Texture2D)myPlane.GetComponent<Renderer>().material.mainTexture;
 
         byte[] bArray2 = texture.EncodeToJPG();
 
-        CmdSyncDrawing(bArray2);
+        myRawImage.GetComponent<RawImage>().texture = texture;
 
+        // CmdSyncDrawing(bArray2);
     }
 
     [Command]
