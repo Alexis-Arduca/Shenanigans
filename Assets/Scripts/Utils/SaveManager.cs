@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Mirror;
+// using Mirror;
 
-public class SaveManager : NetworkBehaviour
+public class SaveManager : MonoBehaviour/* NetworkBehaviour*/
 {
     public AssembleDraw assembleDraw;
     public RenderTexture renderTexture;
@@ -41,26 +41,26 @@ public class SaveManager : NetworkBehaviour
         // CmdSyncDrawing(bArray2);
     }
 
-    [Command]
-    public void CmdSyncDrawing(byte[] drawArray)
-    {
-        RpcSyncDrawing(drawArray);
-    }
+    // [Command]
+    // public void CmdSyncDrawing(byte[] drawArray)
+    // {
+    //     RpcSyncDrawing(drawArray);
+    // }
 
-    [ClientRpc]
-    public void RpcSyncDrawing(byte[] drawArray)
-    {
-        RenderTexture.active = renderTexture;
+    // [ClientRpc]
+    // public void RpcSyncDrawing(byte[] drawArray)
+    // {
+    //     RenderTexture.active = renderTexture;
 
-        Texture2D imgTest = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
-        imgTest.LoadImage(drawArray);
-        imgTest.Apply();
+    //     Texture2D imgTest = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
+    //     imgTest.LoadImage(drawArray);
+    //     imgTest.Apply();
 
-        RenderTexture.active = null;
+    //     RenderTexture.active = null;
 
-        // ---> Have to Update That to be use for the final draw presentation
-        myRawImage.GetComponent<RawImage>().texture = imgTest;
-        finalsDrawing.Add(myRawImage);
-        // ---> Have to Update That to be use for the final draw presentation
-    }
+    //     // ---> Have to Update That to be use for the final draw presentation
+    //     myRawImage.GetComponent<RawImage>().texture = imgTest;
+    //     finalsDrawing.Add(myRawImage);
+    //     // ---> Have to Update That to be use for the final draw presentation
+    // }
 }
