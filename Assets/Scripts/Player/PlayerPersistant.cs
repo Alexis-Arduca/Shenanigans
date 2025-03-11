@@ -1,10 +1,21 @@
+using UnityEngine;
 using Mirror;
 
-public class PlayerPersistence : NetworkBehaviour
+public class PersistentPlayer : NetworkBehaviour
 {
-    public override void OnStartAuthority()
+    private static PersistentPlayer instance;
+
+    void Awake()
     {
-        // Keep player object between scenes
+        // If an instance already exists and it's not this, destroy this object.
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    // Add any network or player-specific logic here.
 }
