@@ -5,6 +5,7 @@ public class GyroBall : MonoBehaviour
 {
     private Quaternion _deviceGyro;
     private Rigidbody _rb;
+    public float torqueMod = 2;
     
     void Start()
     {
@@ -17,6 +18,6 @@ public class GyroBall : MonoBehaviour
         _deviceGyro = Input.gyro.attitude;
         
         Vector3 torque = new Vector3(-_deviceGyro.x, 0, -_deviceGyro.y);
-        _rb.AddTorque(torque, ForceMode.Impulse);
+        _rb.AddTorque(torque * torqueMod, ForceMode.Impulse);
     }
 }

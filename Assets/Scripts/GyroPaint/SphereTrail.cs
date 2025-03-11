@@ -15,7 +15,9 @@ public class SphereTrail : MonoBehaviour
     {
         if (!planeMaterial || !texture)
         {
-            Debug.LogError("Material or texture not set!");
+            #if UNITY_EDITOR
+                Debug.LogError("Material or texture not set!");
+            #endif
             return;
         }
         planeMaterial.mainTexture = texture;
@@ -26,7 +28,7 @@ public class SphereTrail : MonoBehaviour
 
     private void InitLineRenderer()
     {
-        _lineRenderer = gameObject.AddComponent<LineRenderer>();
+        _lineRenderer = GetComponent<LineRenderer>();
         
         // Set material
         _lineRenderer.material = lineMaterial;
