@@ -9,6 +9,7 @@ public class SaveManager : NetworkBehaviour
     public AssembleDraw assembleDraw;
     public RenderTexture renderTexture;
     public GameObject myRawImage;
+    public List<GameObject> finalsDrawing = new List<GameObject>();
 
     void Start()
     {
@@ -30,13 +31,32 @@ public class SaveManager : NetworkBehaviour
 
         RenderTexture.active = null;
 
-        byte[] bArray2 = texture.EncodeToPNG();
+        byte[] bArray2 = texture.EncodeToJPG();
+
+        CmdSyncDrawing(bArray2);
+
+    }
+
+    [Command]
+    public void CmdSyncDrawing(byte[] drawArray)
+    {
+        RpcSyncDrawing(drawArray);
+    }
+
+    [ClientRpc]
+    public void RpcSyncDrawing(byte[] drawArray)
+    {
+        RenderTexture.active = renderTexture;
 
         Texture2D imgTest = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
-        imgTest.LoadImage(bArray2);
+        imgTest.LoadImage(drawArray);
         imgTest.Apply();
 
-        myRawImage.GetComponent<RawImage>().texture = imgTest;
+        RenderTexture.active = null;
 
+        // ---> Have to Update That to be use for the final draw presentation
+        myRawImage.GetComponent<RawImage>().texture = imgTest;
+        finalsDrawing.Add(myRawImage);
+        // ---> Have to Update That to be use for the final draw presentation
     }
 }
