@@ -7,11 +7,14 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/OfflineScene.unity
-    guid: 25d8275ebac8e7249a6fea309ee5e716
-  - enabled: 1
-    path: Assets/Scenes/Eqxuisite_Corpse_MenuScene.unity
-    guid: d3c6312cbd495e6448b74207f04cf41f
+    guid: 5077512cb8a404c4a936bd87681501b3
   - enabled: 1
     path: Assets/Scenes/Eqxuisite_Corpse_LobbyScene.unity
     guid: 2e772f195aae9a54191dd6087e99a290
+  - enabled: 1
+    path: Assets/Scenes/Eqxuisite_Corpse_Minigame.unity
+    guid: 92c056ee208d31042bb9142829dc6562
+  - enabled: 1
+    path: Assets/Scenes/Eqxuisite_Corpse_Game.unity
+    guid: 597cb76ddf74b2c4fa0cc4a2ace72cda
   m_configObjects: {}
