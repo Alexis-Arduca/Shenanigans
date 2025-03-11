@@ -1,22 +1,24 @@
 using UnityEngine;
 using System.Collections;
+using Mirror; // Needed for network commands
 
-public class GameObjectCycler : MonoBehaviour
+public class TutorialScreenCycler : MonoBehaviour
 {
     [System.Serializable]
     public class CycleElement
     {
         public GameObject gameObject; // The GameObject to activate
-        public float activeTime;      // Time in seconds to keep it active
+        public float activeTime;      // How long to keep it active (in seconds)
     }
 
-    public CycleElement[] cycleElements; // Array of GameObjects and their active durations
+    public CycleElement[] cycleElements;  // List of elements to cycle through
+    [Scene] public string targetScene;    // Scene to switch to (set in inspector)
 
     private void Start()
     {
         if (cycleElements.Length > 0)
         {
-            StartCoroutine(CycleThroughGameObjects());
+            StartCoroutine(CycleAndSwitchScene());
         }
         else
         {
@@ -24,11 +26,10 @@ public class GameObjectCycler : MonoBehaviour
         }
     }
 
-    private IEnumerator CycleThroughGameObjects()
+    private IEnumerator CycleAndSwitchScene()
     {
-        int index = 0;
-
-        while (true)
+        // Cycle through each element once.
+        for (int i = 0; i < cycleElements.Length; i++)
         {
             // Deactivate all GameObjects
             foreach (var element in cycleElements)
@@ -37,13 +38,22 @@ public class GameObjectCycler : MonoBehaviour
             }
 
             // Activate the current GameObject
-            cycleElements[index].gameObject.SetActive(true);
+            cycleElements[i].gameObject.SetActive(true);
 
-            // Wait for the specified active time
-            yield return new WaitForSeconds(cycleElements[index].activeTime);
+            // Wait for its active duration
+            yield return new WaitForSeconds(cycleElements[i].activeTime);
+        }
 
-            // Move to the next GameObject in the array
-            index = (index + 1) % cycleElements.Length;
+        // After the final element, switch scenes via Mirror.
+        if (SceneSwitcher.Instance != null)
+        {
+            // Get scene name without path/extension
+            string sceneName = System.IO.Path.GetFileNameWithoutExtension(targetScene);
+            SceneSwitcher.Instance.CmdSwitchScene(sceneName);
+        }
+        else
+        {
+            Debug.LogError("SceneSwitcher instance not found. Unable to switch scene.");
         }
     }
 }
