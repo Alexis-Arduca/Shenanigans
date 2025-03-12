@@ -4439,11 +4439,11 @@ MonoBehaviour:
   NoDelay: 1
   SendTimeout: 5000
   ReceiveTimeout: 30000
-  serverMaxMessageSize: 16384
+  serverMaxMessageSize: 163840
   serverMaxReceivesPerTick: 10000
   serverSendQueueLimitPerConnection: 10000
   serverReceiveQueueLimitPerConnection: 10000
-  clientMaxMessageSize: 16384
+  clientMaxMessageSize: 163840
   clientMaxReceivesPerTick: 1000
   clientSendQueueLimit: 10000
   clientReceiveQueueLimit: 10000
