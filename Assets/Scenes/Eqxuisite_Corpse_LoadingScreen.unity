@@ -1002,7 +1002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &468733991
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1139,11 +1139,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cycleElements:
   - gameObject: {fileID: 468733990}
-    activeTime: 3
+    activeTime: 5
   - gameObject: {fileID: 1899248723}
-    activeTime: 3
+    activeTime: 5
   - gameObject: {fileID: 1947140841}
-    activeTime: 3
+    activeTime: 10
   targetScene: Assets/Scenes/Eqxuisite_Corpse_Game.unity
 --- !u!1 &650535784
 GameObject:
@@ -3060,7 +3060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1899248724
 MonoBehaviour:
   m_ObjectHideFlags: 0
