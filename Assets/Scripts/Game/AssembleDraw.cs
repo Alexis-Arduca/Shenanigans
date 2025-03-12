@@ -6,11 +6,32 @@ using Mirror;
 
 public class AssembleDraw : NetworkBehaviour
 {
-    private List<GameObject> partDrawing = new List<GameObject>();
+    public GameObject topDrawing;
+    public GameObject midDrawing;
+    public GameObject botDrawing;
 
-    public void UploadDrawing(GameObject drawing)
+    void Start()
     {
-        partDrawing.Add(drawing);
+        topDrawing.SetActive(false);
+        midDrawing.SetActive(false);
+        botDrawing.SetActive(false);
+    }
+
+    public void UploadDrawing(Texture2D drawText, int id)
+    {
+        if (id == 1) {
+            topDrawing.SetActive(true);
+            topDrawing.GetComponent<RawImage>().texture = drawText;
+            topDrawing.SetActive(false);
+        } else if (id == 2) {
+            midDrawing.SetActive(true);
+            midDrawing.GetComponent<RawImage>().texture = drawText;
+            midDrawing.SetActive(false);
+        } else {
+            botDrawing.SetActive(true);
+            botDrawing.GetComponent<RawImage>().texture = drawText;
+            botDrawing.SetActive(false);
+        }
     }
 
     public void DisplayFinalDraw()
@@ -21,8 +42,8 @@ public class AssembleDraw : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CmdSyncDisplay()
     {
-        for (int i = 0; i < partDrawing.Count; i++) {
-            Instantiate(partDrawing[i], new Vector3(i * 2.0f, 0, 0), Quaternion.identity);
-        }
+        topDrawing.SetActive(true);
+        midDrawing.SetActive(true);
+        botDrawing.SetActive(true);
     }
 }

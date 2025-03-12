@@ -8,7 +8,6 @@ public class SaveManager : NetworkBehaviour
 {
     public AssembleDraw assembleDraw;
     public RenderTexture renderTexture;
-    public GameObject myRawImage;
     public GameObject myPlane;
 
     void Start()
@@ -23,7 +22,6 @@ public class SaveManager : NetworkBehaviour
 
     public void SaveDrawing()
     {
-
         Texture2D texture = (Texture2D)myPlane.GetComponent<Renderer>().material.mainTexture;
 
         byte[] bArray2 = texture.EncodeToJPG();
@@ -32,8 +30,11 @@ public class SaveManager : NetworkBehaviour
     }
 
     [Command(requiresAuthority = false)]
-    public void CmdSyncDrawing(byte[] drawArray)
+    public void CmdSyncDrawing(byte[] drawArray, NetworkConnectionToClient sender = null)
     {
+        if (sender == null) return;
+        int playerID = sender.connectionId;
+
         RenderTexture.active = renderTexture;
 
         Texture2D imgTest = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
@@ -42,9 +43,6 @@ public class SaveManager : NetworkBehaviour
 
         RenderTexture.active = null;
 
-        GameObject instance = Instantiate(myRawImage);
-        instance.GetComponent<RawImage>().texture = imgTest;
-        assembleDraw.UploadDrawing(instance);
-        Destroy(instance, 0.1f);
+        assembleDraw.UploadDrawing(imgTest, playerID);
     }
 }

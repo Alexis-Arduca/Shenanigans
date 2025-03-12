@@ -4439,7 +4439,7 @@ MonoBehaviour:
   NoDelay: 1
   SendTimeout: 5000
   ReceiveTimeout: 30000
-  serverMaxMessageSize: 163840
+  serverMaxMessageSize: 1638400
   serverMaxReceivesPerTick: 10000
   serverSendQueueLimitPerConnection: 10000
   serverReceiveQueueLimitPerConnection: 10000
