@@ -7,13 +7,13 @@ public class PersistentPlayer : NetworkBehaviour
 
     void Awake()
     {
-        // If an instance already exists and it's not this, destroy this object.
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        instance = this;
+        // // If an instance already exists and it's not this, destroy this object.
+        // if (instance != null && instance != this)
+        // {
+        //     Destroy(gameObject);
+        //     return;
+        // }
+        // instance = this;
         DontDestroyOnLoad(gameObject);
     }
 

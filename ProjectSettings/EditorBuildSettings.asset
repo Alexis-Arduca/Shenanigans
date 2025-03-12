@@ -19,8 +19,5 @@ EditorBuildSettings:
     guid: a193a2f263f698c4b87850b19ad1858c
   - enabled: 1
     path: Assets/Scenes/Eqxuisite_Corpse_Game.unity
-    guid: 597cb76ddf74b2c4fa0cc4a2ace72cda
-  - enabled: 1
-    path: Assets/Scenes/GyroBall.unity
-    guid: 44e55608f2aa9494d84807a7fe9f42db
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
