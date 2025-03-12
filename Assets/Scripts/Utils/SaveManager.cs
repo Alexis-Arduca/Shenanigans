@@ -24,19 +24,10 @@ public class SaveManager : NetworkBehaviour
 
     public void SaveDrawing()
     {
-        // RenderTexture.active = renderTexture;
-
-        // Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
-        // texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
-        // texture.Apply();
-
-        // RenderTexture.active = null;
 
         Texture2D texture = (Texture2D)myPlane.GetComponent<Renderer>().material.mainTexture;
 
         byte[] bArray2 = texture.EncodeToJPG();
-
-        // myRawImage.GetComponent<RawImage>().texture = texture;
 
         CmdSyncDrawing(bArray2);
     }
@@ -53,6 +44,6 @@ public class SaveManager : NetworkBehaviour
         RenderTexture.active = null;
 
         myRawImage.GetComponent<RawImage>().texture = imgTest;
-        finalsDrawing.Add(myRawImage);
+        assembleDraw.UploadDrawing(myRawImage);
     }
 }

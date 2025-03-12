@@ -8,7 +8,7 @@ public class DrawOnTexture : MonoBehaviour
     private int textureHeight;
     public RenderTexture myRenderTexture;
 
-    private bool canDraw = false;
+    private bool canDraw = true;
     private bool isBucketSelect = false;
     private Texture2D myTexture;
     private Renderer myRend;
