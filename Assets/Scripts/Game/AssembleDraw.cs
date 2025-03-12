@@ -2,29 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class AssembleDraw : MonoBehaviour
+public class AssembleDraw : NetworkBehaviour
 {
-    private List<GameObject> partDrawing = new List<GameObject>();
+    public GameObject topDrawing;
+    public GameObject midDrawing;
+    public GameObject botDrawing;
 
-    public void UploadDrawing(GameObject drawing)
+    void Start()
     {
-        partDrawing.Add(drawing);
+        topDrawing.SetActive(false);
+        midDrawing.SetActive(false);
+        botDrawing.SetActive(false);
+    }
+
+    public void UploadDrawing(Texture2D drawText, int id)
+    {
+        if (id == 1) {
+            topDrawing.SetActive(true);
+            topDrawing.GetComponent<RawImage>().texture = drawText;
+            topDrawing.SetActive(false);
+        } else if (id == 2) {
+            midDrawing.SetActive(true);
+            midDrawing.GetComponent<RawImage>().texture = drawText;
+            midDrawing.SetActive(false);
+        } else {
+            botDrawing.SetActive(true);
+            botDrawing.GetComponent<RawImage>().texture = drawText;
+            botDrawing.SetActive(false);
+        }
     }
 
     public void DisplayFinalDraw()
     {
-        /// =========================================================== \\\
-        /// Here the goal is too get how many image we have to display. \\\
-        /// And with that information we have to place the image from   \\\
-        /// the top one to the last one. After that we can display them \\\
-        ///                                                             \\\
-        /// But we know there will a 2/3/4 players modes so we have to  \\\
-        /// adapt for each gamemode.                                    \\\
-        /// =========================================================== \\\
+        CmdSyncDisplay();
+    }
 
-        for (int i = 0; i < partDrawing.Count; i++) {
-            partDrawing[i].SetActive(true);
-        }
+    [Command(requiresAuthority = false)]
+    public void CmdSyncDisplay()
+    {
+        topDrawing.SetActive(true);
+        midDrawing.SetActive(true);
+        botDrawing.SetActive(true);
     }
 }
