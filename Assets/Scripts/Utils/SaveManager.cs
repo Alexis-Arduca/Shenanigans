@@ -9,7 +9,6 @@ public class SaveManager : NetworkBehaviour
     public AssembleDraw assembleDraw;
     public RenderTexture renderTexture;
     public GameObject myRawImage;
-    public List<GameObject> finalsDrawing = new List<GameObject>();
     public GameObject myPlane;
 
     void Start()
@@ -43,7 +42,9 @@ public class SaveManager : NetworkBehaviour
 
         RenderTexture.active = null;
 
-        myRawImage.GetComponent<RawImage>().texture = imgTest;
-        assembleDraw.UploadDrawing(myRawImage);
+        GameObject instance = Instantiate(myRawImage);
+        instance.GetComponent<RawImage>().texture = imgTest;
+        assembleDraw.UploadDrawing(instance);
+        Destroy(instance, 0.1f);
     }
 }
