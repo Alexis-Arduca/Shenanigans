@@ -9,29 +9,34 @@ public class AffiliatePart : NetworkBehaviour
 
     void Start()
     {
-        Debug.Log("Hmmmmmmmmmm");
-
         headPart.SetActive(false);
         bodyPart.SetActive(false);
         legsPart.SetActive(false);
 
-        if (isLocalPlayer)
+        if (isServer)
         {
-            CmdRequestPlayerID();
+            AssignParts();
         }
     }
 
-    [Command]
-    void CmdRequestPlayerID()
+    [Server]
+    void AssignParts()
     {
-        Debug.Log("Receive Something");
-        int playerID = connectionToClient.connectionId;
-        TargetReceivePlayerID(connectionToClient, playerID);
+        foreach (NetworkConnectionToClient conn in NetworkServer.connections.Values)
+        {
+            int playerID = conn.connectionId;
+
+            if (playerID != 0) {
+                TargetReceivePlayerID(conn, playerID);
+            }
+        }
     }
 
     [TargetRpc]
     void TargetReceivePlayerID(NetworkConnectionToClient target, int playerID)
-    {   
+    {
+        Debug.Log("Caca " + playerID);
+
         if (playerID == 1)
         {
             headPart.SetActive(true);
