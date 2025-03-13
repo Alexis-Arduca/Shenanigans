@@ -9,6 +9,8 @@ public class AffiliatePart : NetworkBehaviour
 
     void Start()
     {
+        Debug.Log("Hmmmmmmmmmm");
+
         headPart.SetActive(false);
         bodyPart.SetActive(false);
         legsPart.SetActive(false);
@@ -22,6 +24,7 @@ public class AffiliatePart : NetworkBehaviour
     [Command]
     void CmdRequestPlayerID()
     {
+        Debug.Log("Receive Something");
         int playerID = connectionToClient.connectionId;
         TargetReceivePlayerID(connectionToClient, playerID);
     }
