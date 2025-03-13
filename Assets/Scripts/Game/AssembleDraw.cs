@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Mirror;
 
-public class AssembleDraw : NetworkBehaviour
+public class AssembleDraw : MonoBehaviour
 {
     public GameObject topDrawing;
     public GameObject midDrawing;
@@ -34,12 +33,6 @@ public class AssembleDraw : NetworkBehaviour
         }
     }
 
-    public void DisplayFinalDraw()
-    {
-        CmdSyncDisplay();
-    }
-
-    [Command(requiresAuthority = false)]
     public void CmdSyncDisplay()
     {
         topDrawing.SetActive(true);

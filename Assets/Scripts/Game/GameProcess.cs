@@ -1,10 +1,15 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using Mirror;
 
-public class GameProcess : MonoBehaviour
+public class GameProcess : NetworkBehaviour
 {
+    public AssembleDraw assembleDraw;
     public float drawingTime = 120f;
+    private int playerDone = 0;
+    private int maxPlayer;
+    private bool isDrawingCompleted = false;
 
     [Header("Easter Egg")]
     private int resetButtonCount = 0;
@@ -12,28 +17,46 @@ public class GameProcess : MonoBehaviour
 
     void Start()
     {
-        
-    }
+        maxPlayer = NetworkManager.singleton.numPlayers;
 
-    void Update()
-    {
-    }
-
-    public void DrawingStart()
-    {
         GameEventsManager.instance.drawingEvents.OnDrawingStart();
-        // StartCoroutine(WaitAndCompleteDrawing());
+        StartCoroutine(WaitAndCompleteDrawing());
     }
 
     private IEnumerator WaitAndCompleteDrawing()
     {
-        yield return new WaitForSeconds(drawingTime);
-        DrawingDone();
+        float timeLeft = drawingTime;
+
+        while (timeLeft > 0 && playerDone < maxPlayer && !isDrawingCompleted)
+        {
+            timeLeft -= Time.deltaTime;
+            yield return null;
+        }
+
+        EndOfTimer();
     }
 
-    public void DrawingDone()
+    public void EndOfTimer()
     {
+        assembleDraw.CmdSyncDisplay();
+    }
+
+    public void PlayerDrawComplete()
+    {
+        CmdSyncPlayerFinish();
         GameEventsManager.instance.drawingEvents.OnDrawingComplete();
+    }
+
+    [Command]
+    private void CmdSyncPlayerFinish()
+    {
+        playerDone += 1;
+
+        if (playerDone == maxPlayer)
+        {
+            StopAllCoroutines();
+            EndOfTimer();
+        }
     }
 
     public void EasterEgg()
