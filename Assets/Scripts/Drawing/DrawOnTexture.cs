@@ -16,18 +16,16 @@ public class DrawOnTexture : MonoBehaviour
 
     void Start()
     {
-        textureWidth = (int)Screen.width;
-        textureHeight = (int)Screen.height;
-
-        myRend = GetComponent<Renderer>();
-
-        myTexture = new Texture2D(textureWidth, textureHeight, TextureFormat.RGBA32, false);
-        myRend.material.mainTexture = myTexture;
-
-        ClearTexture();
-
         GameEventsManager.instance.drawingEvents.onDrawingStart += UpdateDrawingState;
         GameEventsManager.instance.drawingEvents.onDrawingComplete += UpdateDrawingState;
+    }
+    
+    void Awake()
+    {
+        myRend = GetComponent<Renderer>();
+
+        UpdateTextureSize();
+        ClearTexture();
     }
 
     void OnDisable()
@@ -85,7 +83,6 @@ public class DrawOnTexture : MonoBehaviour
 
         myTexture = new Texture2D(textureWidth, textureHeight, TextureFormat.RGBA32, false);
         myRend.material.mainTexture = myTexture;
-        ClearTexture();
     }
 
     private void DrawAtPosition(Vector3 position)
