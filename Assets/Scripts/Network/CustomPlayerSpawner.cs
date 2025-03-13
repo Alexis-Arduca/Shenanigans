@@ -34,7 +34,7 @@ public class CustomPlayerSpawner : NetworkManager
             GameObject player = Instantiate(playerPrefab);  // Instantiate player
             NetworkServer.AddPlayerForConnection(conn, player);  // Assign the player to the connection
 
-            // If it’s not the host, assign client authority
+            // If itï¿½s not the host, assign client authority
             if (conn.identity != null)
             {
                 conn.identity.AssignClientAuthority(conn);
