@@ -6,7 +6,8 @@ using Mirror;
 public class GameProcess : NetworkBehaviour
 {
     public AssembleDraw assembleDraw;
-    public float drawingTime = 120f;
+    public TMP_Text timerText;
+    public float drawingTime = 60f;
     private int playerDone = 0;
     private int maxPlayer;
     private bool isDrawingCompleted = false;
@@ -19,7 +20,6 @@ public class GameProcess : NetworkBehaviour
     {
         maxPlayer = NetworkManager.singleton.numPlayers;
 
-        GameEventsManager.instance.drawingEvents.OnDrawingStart();
         StartCoroutine(WaitAndCompleteDrawing());
     }
 
@@ -30,10 +30,18 @@ public class GameProcess : NetworkBehaviour
         while (timeLeft > 0 && playerDone < maxPlayer && !isDrawingCompleted)
         {
             timeLeft -= Time.deltaTime;
+            UpdateTimerUI(timeLeft);
             yield return null;
         }
 
         EndOfTimer();
+    }
+
+    private void UpdateTimerUI(float time)
+    {
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
+        timerText.text = $"{minutes:D2}:{seconds:D2}";
     }
 
     public void EndOfTimer()
