@@ -277,7 +277,6 @@ GameObject:
   m_Component:
   - component: {fileID: 39085649}
   - component: {fileID: 39085650}
-  - component: {fileID: 39085651}
   m_Layer: 0
   m_Name: GameManagers
   m_TagString: Untagged
@@ -312,28 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1207469f7936e9498873bfa22113bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theme: {fileID: 39085651}
   drawingTime: 120
-  themeDisplay: {fileID: 2076126751}
   secret: {fileID: 1818762257}
---- !u!114 &39085651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39085648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7a5f245bad966e479e954f7e66b024d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  themes:
-  - People
-  - Dog
-  - Sandwich
-  - Vegetables
-  - Chips
 --- !u!1 &46774043
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,6 +3199,7 @@ Transform:
   - {fileID: 903226429}
   - {fileID: 957581360}
   - {fileID: 626360900}
+  - {fileID: 2046243056}
   m_Father: {fileID: 46774044}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1604489758
@@ -3741,6 +3721,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008198217}
   m_CullTransparentMesh: 1
+--- !u!1 &2046243055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2046243056}
+  - component: {fileID: 2046243057}
+  m_Layer: 0
+  m_Name: UniqueTheme
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2046243056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046243055}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1585836572}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2046243057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046243055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7a5f245bad966e479e954f7e66b024d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themes:
+  - Rock
+  - Science Fiction
+  - Pink
+  - Girly
+  - Chad
+  - Food
+  - Gamer
+  - Animal
+  - Fantasy
+  - Mythology
+  - Futuristic
+  - Horror
+  - Nature
+  - History
+  - Surreal
+  - Dora
+  themeDisplay: {fileID: 2076126751}
 --- !u!1 &2076126749
 GameObject:
   m_ObjectHideFlags: 0

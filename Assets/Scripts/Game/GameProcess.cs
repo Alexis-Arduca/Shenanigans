@@ -4,9 +4,7 @@ using TMPro;
 
 public class GameProcess : MonoBehaviour
 {
-    public ThemeSelection theme;
     public float drawingTime = 120f;
-    public TMPro.TMP_Text themeDisplay;
 
     [Header("Easter Egg")]
     private int resetButtonCount = 0;
@@ -23,7 +21,6 @@ public class GameProcess : MonoBehaviour
 
     public void DrawingStart()
     {
-        themeDisplay.text = $"Your unique theme: {theme.GetRandomTheme()}";
         GameEventsManager.instance.drawingEvents.OnDrawingStart();
         // StartCoroutine(WaitAndCompleteDrawing());
     }
