@@ -7,6 +7,7 @@ using System.Net.NetworkInformation;
 
 public class CustomNetworkManager : NetworkManager
 {
+    // UI GameObjects for waiting and joined players.
     private GameObject wait1;
     private GameObject wait2;
     private GameObject wait3;
@@ -14,7 +15,12 @@ public class CustomNetworkManager : NetworkManager
     private GameObject join2;
     private GameObject join3;
 
-    // Called when the host starts
+    // Audio clip to play when a client connects.
+    public AudioClip connectSound;
+    // Optional AudioSource component for playing the sound.
+    public AudioSource audioSource;
+
+    // Called when the host starts.
     public override void OnStartHost()
     {
         base.OnStartHost();
@@ -24,7 +30,7 @@ public class CustomNetworkManager : NetworkManager
         wait1 = GameObject.Find("WaitPlayer1");
         wait2 = GameObject.Find("WaitPlayer2");
         wait3 = GameObject.Find("WaitPlayer3");
-        
+
         join1 = GameObject.Find("JoinedPlayer1");
         join2 = GameObject.Find("JoinedPlayer2");
         join3 = GameObject.Find("JoinedPlayer3");
@@ -39,6 +45,21 @@ public class CustomNetworkManager : NetworkManager
     {
         base.OnClientConnect();
         Debug.Log("Client connected; requesting player spawn.");
+
+        // Play the connection sound if assigned.
+        if (connectSound != null)
+        {
+            if (audioSource != null)
+            {
+                // Play using the assigned AudioSource.
+                audioSource.PlayOneShot(connectSound);
+            }
+            else
+            {
+                // Fallback: play the sound at the origin.
+                AudioSource.PlayClipAtPoint(connectSound, Vector3.zero);
+            }
+        }
 
         // Only add a player if this client is not the host.
         if (!NetworkServer.active)
@@ -60,24 +81,28 @@ public class CustomNetworkManager : NetworkManager
         // For this example, we treat connectionId 0 as the host (spectator) and skip spawning a player.
         if (conn.connectionId == 0)
         {
-            Debug.Log("Host (PC) is connected as spectator � no player spawned.");
+            Debug.Log("Host (PC) is connected as spectator – no player spawned.");
             return;
         }
 
-        // Instantiate the player prefab and register it with the connection.
-        Debug.Log($"Spawning player for client {conn.connectionId}.");
-
-        if (conn.connectionId == 1) {
+        // Update UI elements based on the connection id.
+        if (conn.connectionId == 1)
+        {
             wait1.SetActive(false);
             join1.SetActive(true);
-        } else if (conn.connectionId == 2) {
+        }
+        else if (conn.connectionId == 2)
+        {
             wait2.SetActive(false);
             join2.SetActive(true);
-        } else if (conn.connectionId == 3) {
+        }
+        else if (conn.connectionId == 3)
+        {
             wait3.SetActive(false);
             join3.SetActive(true);
         }
 
+        // Instantiate the player prefab and register it with the connection.
         GameObject playerInstance = Instantiate(playerPrefab);
         NetworkServer.AddPlayerForConnection(conn, playerInstance);
     }

@@ -14,6 +14,9 @@ public class TutorialScreenCycler : MonoBehaviour
     public CycleElement[] cycleElements;  // List of elements to cycle through
     [Scene] public string targetScene;    // Scene to switch to (set in inspector)
 
+    // New toggle to enable/disable scene switching.
+    public bool enableSceneSwitch = true;
+
     private void Start()
     {
         if (cycleElements.Length > 0)
@@ -44,16 +47,19 @@ public class TutorialScreenCycler : MonoBehaviour
             yield return new WaitForSeconds(cycleElements[i].activeTime);
         }
 
-        // After the final element, switch scenes via Mirror.
-        if (SceneSwitcher.Instance != null)
+        // Only attempt to switch scenes if the toggle is enabled.
+        if (enableSceneSwitch)
         {
-            // Get scene name without path/extension
-            string sceneName = System.IO.Path.GetFileNameWithoutExtension(targetScene);
-            SceneSwitcher.Instance.CmdSwitchScene(sceneName);
-        }
-        else
-        {
-            Debug.LogError("SceneSwitcher instance not found. Unable to switch scene.");
+            if (SceneSwitcher.Instance != null)
+            {
+                // Get scene name without path/extension
+                string sceneName = System.IO.Path.GetFileNameWithoutExtension(targetScene);
+                SceneSwitcher.Instance.CmdSwitchScene(sceneName);
+            }
+            else
+            {
+                Debug.LogError("SceneSwitcher instance not found. Unable to switch scene.");
+            }
         }
     }
 }
