@@ -8,23 +8,19 @@ public class AffiliatePart : MonoBehaviour
 
     void Start()
     {
-        ulong playerID = PersistentPlayer.localPlayer.netId;
+        // ulong playerID = PersistentPlayer.localPlayer.netId;
 
-        headPart.SetActive(false);
-        bodyPart.SetActive(false);
-        legsPart.SetActive(false);
-
-        if (playerID == 1)
-        {
-            headPart.SetActive(true);
-        }
-        else if (playerID == 2)
-        {
-            bodyPart.SetActive(true);
-        }
-        else if (playerID == 3)
-        {
-            legsPart.SetActive(true);
-        }
+        // if (playerID == 1)
+        // {
+        //     headPart.SetActive(true);
+        // }
+        // else if (playerID == 2)
+        // {
+        //     bodyPart.SetActive(true);
+        // }
+        // else if (playerID == 3)
+        // {
+        //     legsPart.SetActive(true);
+        // }
     }
 }
