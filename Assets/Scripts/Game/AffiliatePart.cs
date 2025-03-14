@@ -9,33 +9,11 @@ public class AffiliatePart : NetworkBehaviour
 
     void Start()
     {
+        ulong playerID = PlayerManager.localPlayer.netId;
+
         headPart.SetActive(false);
         bodyPart.SetActive(false);
         legsPart.SetActive(false);
-
-        if (isServer)
-        {
-            AssignParts();
-        }
-    }
-
-    [Server]
-    void AssignParts()
-    {
-        foreach (NetworkConnectionToClient conn in NetworkServer.connections.Values)
-        {
-            int playerID = conn.connectionId;
-
-            if (playerID != 0) {
-                TargetReceivePlayerID(conn, playerID);
-            }
-        }
-    }
-
-    [TargetRpc]
-    void TargetReceivePlayerID(NetworkConnectionToClient target, int playerID)
-    {
-        Debug.Log("Caca " + playerID);
 
         if (playerID == 1)
         {
@@ -45,7 +23,7 @@ public class AffiliatePart : NetworkBehaviour
         {
             bodyPart.SetActive(true);
         }
-        else
+        else if (playerID == 3)
         {
             legsPart.SetActive(true);
         }

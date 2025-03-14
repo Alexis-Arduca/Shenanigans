@@ -5,13 +5,24 @@ public class PlayerController : NetworkBehaviour
 {
     [SyncVar(hook = nameof(OnColorChanged))]
     private Color playerColor;
+    
+    [SyncVar] public int playerID;
 
     private SpriteRenderer sr;
     public float moveSpeed = 5f;
 
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        playerID = connectionToClient.connectionId; // Assigner l'ID unique du joueur
+    }
+
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
+
+        // Debug pour vérifier l'ID du joueur local
+        Debug.Log($"Je suis le joueur local avec l'ID : {playerID}");
 
         // Attempt to get the SpriteRenderer component
         sr = GetComponent<SpriteRenderer>();
@@ -21,9 +32,8 @@ public class PlayerController : NetworkBehaviour
             return;
         }
 
-        // Generate a random color
+        // Générer une couleur aléatoire et la synchroniser sur tous les clients
         Color randomColor = new Color(Random.value, Random.value, Random.value);
-        // Send the color to the server to sync with all clients
         CmdSetColor(randomColor);
     }
 
@@ -35,7 +45,6 @@ public class PlayerController : NetworkBehaviour
 
     private void OnColorChanged(Color oldColor, Color newColor)
     {
-        // Attempt to get the SpriteRenderer component if it's not already assigned
         if (sr == null)
             sr = GetComponent<SpriteRenderer>();
 
@@ -47,11 +56,9 @@ public class PlayerController : NetworkBehaviour
 
     void Update()
     {
-        // Only the local player should handle movement input.
         if (!isLocalPlayer) return;
 
 #if UNITY_EDITOR
-        // In the Editor, use mouse input for testing.
         if (Input.GetMouseButton(0))
         {
             Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -59,7 +66,6 @@ public class PlayerController : NetworkBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
 #else
-        // On mobile, use touch input.
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
