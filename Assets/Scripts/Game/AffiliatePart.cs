@@ -1,7 +1,6 @@
 using UnityEngine;
-using Mirror;
 
-public class AffiliatePart : NetworkBehaviour
+public class AffiliatePart : MonoBehaviour
 {
     public GameObject headPart;
     public GameObject bodyPart;

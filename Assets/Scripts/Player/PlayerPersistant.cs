@@ -3,17 +3,15 @@ using Mirror;
 
 public class PersistentPlayer : NetworkBehaviour
 {
-    private static PersistentPlayer instance;
+    public static PersistentPlayer localPlayer;
 
     void Awake()
     {
-        // // If an instance already exists and it's not this, destroy this object.
-        // if (instance != null && instance != this)
-        // {
-        //     Destroy(gameObject);
-        //     return;
-        // }
-        // instance = this;
+        if (isLocalPlayer)
+        {
+            localPlayer = this;
+        }
+
         DontDestroyOnLoad(gameObject);
     }
 

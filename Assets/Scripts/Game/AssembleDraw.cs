@@ -8,6 +8,8 @@ public class AssembleDraw : MonoBehaviour
     public GameObject topDrawing;
     public GameObject midDrawing;
     public GameObject botDrawing;
+    public GameObject GameUi;
+    public GameObject ShowUi;
 
     void Start()
     {
@@ -35,6 +37,9 @@ public class AssembleDraw : MonoBehaviour
 
     public void CmdSyncDisplay()
     {
+        GameUi.SetActive(false);
+        ShowUi.SetActive(true);
+
         topDrawing.SetActive(true);
         midDrawing.SetActive(true);
         botDrawing.SetActive(true);

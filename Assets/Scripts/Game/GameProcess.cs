@@ -18,9 +18,12 @@ public class GameProcess : NetworkBehaviour
 
     void Start()
     {
-        maxPlayer = NetworkManager.singleton.numPlayers;
+        if (isServer)
+        {
+            maxPlayer = NetworkManager.singleton.numPlayers;
 
-        StartCoroutine(WaitAndCompleteDrawing());
+            StartCoroutine(WaitAndCompleteDrawing());
+        }
     }
 
     private IEnumerator WaitAndCompleteDrawing()
@@ -51,8 +54,9 @@ public class GameProcess : NetworkBehaviour
 
     public void PlayerDrawComplete()
     {
-        CmdSyncPlayerFinish();
         GameEventsManager.instance.drawingEvents.OnDrawingComplete();
+
+        CmdSyncPlayerFinish();
     }
 
     [Command]

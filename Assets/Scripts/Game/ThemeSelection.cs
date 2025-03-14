@@ -22,7 +22,7 @@ public class ThemeSelection : MonoBehaviour
 
         newObject.transform.position = new Vector3(1267f, 359.5f, -674.5f);
         newObject.transform.rotation = Quaternion.Euler(-3.033f, 1.269f, -24.113f);
-        newObject.transform.localScale = new Vector3(5000f, 5000f, 3f);
+        newObject.transform.localScale = new Vector3(5500f, 5500f, 3f);
 
         return themes[myRandom];
     }
