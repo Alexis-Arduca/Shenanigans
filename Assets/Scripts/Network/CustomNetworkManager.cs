@@ -20,6 +20,17 @@ public class CustomNetworkManager : NetworkManager
     // Optional AudioSource component for playing the sound.
     public AudioSource audioSource;
 
+    public GameObject myPrefab;
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        // Instantiate your prefab
+        GameObject obj = Instantiate(myPrefab);
+        // Spawn it so that all clients (including the host) see it
+        NetworkServer.Spawn(obj);
+    }
+
     // Called when the host starts.
     public override void OnStartHost()
     {
