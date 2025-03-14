@@ -20,9 +20,7 @@ public class ThemeSelection : MonoBehaviour
 
         GameObject newObject = Instantiate(themesPrefab[myRandom], mobileManager.transform);
 
-        newObject.transform.position = new Vector3(1267f, 359.5f, -674.5f);
-        newObject.transform.rotation = Quaternion.Euler(-3.033f, 1.269f, -24.113f);
-        newObject.transform.localScale = new Vector3(5500f, 5500f, 3f);
+        newObject.transform.position = new Vector3(-1.5f, 3.5f, 18);
 
         return themes[myRandom];
     }

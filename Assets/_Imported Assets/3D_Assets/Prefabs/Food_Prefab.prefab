@@ -417,7 +417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7340647357597925028}
-  - component: {fileID: 8874262837964375518}
+  - component: {fileID: 4690319871278457197}
   m_Layer: 0
   m_Name: Food_Prefab
   m_TagString: Untagged
@@ -434,14 +434,14 @@ Transform:
   m_GameObject: {fileID: 8674783391464096902}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02696957, y: 0.3758499, z: -0.008277393}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3738376959476109441}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8874262837964375518
+--- !u!114 &4690319871278457197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

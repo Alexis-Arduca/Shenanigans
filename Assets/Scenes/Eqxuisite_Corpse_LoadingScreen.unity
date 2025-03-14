@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 142067800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 920.3421, y: 500.45126, z: 85.844154}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -361,10 +361,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1125902104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 18.571}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 159, y: 37}
-  m_SizeDelta: {x: 800, y: 300}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 230.4, y: 846.2}
+  m_SizeDelta: {x: 602, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &158588918
 MonoBehaviour:
@@ -1085,7 +1085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &430978192
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1100,9 +1100,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1125902104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -714}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 180.79999}
   m_SizeDelta: {x: 1000, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &430978193
@@ -1688,7 +1688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &576666432
 Transform:
   m_ObjectHideFlags: 0
@@ -2595,7 +2595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1125902104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2946,7 +2946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 374.2, y: 348.40002}
+  m_AnchoredPosition: {x: 374.2, y: 258}
   m_SizeDelta: {x: 112, y: 111}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1311025209
@@ -3450,7 +3450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -441.59998}
+  m_AnchoredPosition: {x: 0, y: -250}
   m_SizeDelta: {x: 431, y: 114}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1542632345
@@ -3542,13 +3542,15 @@ MonoBehaviour:
   - Gamer
   - Fancy
   - Pink Girly
+  - Party
   themesPrefab:
-  - {fileID: 919132149155446097, guid: 5b73570d6a04f425aa58a991543df222, type: 3}
-  - {fileID: 919132149155446097, guid: 9b1033c0788384feba47e94f3452865e, type: 3}
-  - {fileID: 919132149155446097, guid: d1e3d4280c9fc4c0caeb997bb7594eb6, type: 3}
-  - {fileID: 919132149155446097, guid: c6921af5b25224084bbffe20dd9893ea, type: 3}
-  - {fileID: 919132149155446097, guid: a4eeb58ac16ed4f70bcc3247b28ba72b, type: 3}
-  - {fileID: 919132149155446097, guid: e5515db388e534f779e995345eacf8d8, type: 3}
+  - {fileID: 8674783391464096902, guid: ce200e86911204a328b5fef94b5aab79, type: 3}
+  - {fileID: 6442490942141976318, guid: 5c54994d53f0247f59fc11ddecd53494, type: 3}
+  - {fileID: 6876733015650531100, guid: a5938e471051b43ab99c82679d91e315, type: 3}
+  - {fileID: 6140817647072113103, guid: 2b45bd7a23c4c4b4bab72ab05657fd54, type: 3}
+  - {fileID: 1261835167106184628, guid: 0c8fe0a1bec7a4a90a009548300b7ece, type: 3}
+  - {fileID: 8479162615643841153, guid: 3825803c33ddd427fa37dd45036b8b0f, type: 3}
+  - {fileID: 5362096091448896500, guid: 486ba3fdc5ea04dd09bcc5a918da6ee9, type: 3}
   mobileManager: {fileID: 1125902103}
   themeDisplay: {fileID: 158588918}
 --- !u!1 &1563425455
@@ -3878,7 +3880,7 @@ Camera:
   m_GameObject: {fileID: 1701445973}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -3929,7 +3931,7 @@ Transform:
   m_GameObject: {fileID: 1701445973}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1286, y: 368, z: -774}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3960,7 +3962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1739277534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3975,9 +3977,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1125902104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -724}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 180.79999}
   m_SizeDelta: {x: 1000, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1739277535
@@ -4184,9 +4186,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1125902104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -767}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 180.79999}
   m_SizeDelta: {x: 1000, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768825380
@@ -4320,7 +4322,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 680.1}
+  m_AnchoredPosition: {x: 0, y: 568.8}
   m_SizeDelta: {x: 483, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817794764
