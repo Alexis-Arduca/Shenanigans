@@ -8,7 +8,7 @@ public class AffiliatePart : MonoBehaviour
 
     void Start()
     {
-        ulong playerID = PlayerManager.localPlayer.netId;
+        ulong playerID = PersistentPlayer.localPlayer.netId;
 
         headPart.SetActive(false);
         bodyPart.SetActive(false);

@@ -54,9 +54,8 @@ public class GameProcess : NetworkBehaviour
 
     public void PlayerDrawComplete()
     {
-        GameEventsManager.instance.drawingEvents.OnDrawingComplete();
-
         CmdSyncPlayerFinish();
+        GameEventsManager.instance.drawingEvents.OnDrawingComplete();
     }
 
     [Command]
